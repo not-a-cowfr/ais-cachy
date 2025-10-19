@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCES=$(find . -type f -not -path "./execution/schroote/*" -not -path "./ais.sh" -not -path "./.git" -printf '%P\n')
+SOURCES=$(find . -type f -not -path "./execution/schroote/*" -not -path "./ais.sh" -not -path "./.git/*" -printf '%P\n')
 
 for i in $SOURCES 
 do
