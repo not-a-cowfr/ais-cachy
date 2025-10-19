@@ -1,0 +1,14 @@
+#!/bin/bash
+title=zzz
+description="- program which allows hibernation (needed aur)"
+status=off
+
+main() {
+
+    su $USERNAME << 'EOF'
+    source /mnt/schroote/variables.sh
+    install asciidoctor
+    install_aur zzz
+EOF
+
+}

@@ -1,0 +1,10 @@
+#!/bin/bash
+title=pipewire
+description="- Pipewire sound system"
+status=on
+
+main() {
+
+	install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulse 
+
+}
