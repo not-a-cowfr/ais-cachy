@@ -2,6 +2,15 @@
 
 ![Alt text for the image](img.png)
 
+**to use it do:**
+
+`git clone https://gitlab.com/user1312/ais`
+
+`cd ais`
+
+
+`./ais.sh or if you have bad inthernet ./ais.sh -b`
+
 Features:
 
 - Nice tui with themes
