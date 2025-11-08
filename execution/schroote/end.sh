@@ -31,7 +31,7 @@ alias zzz="doas zzz" ' >> $SSHELL_CONFIG
             sddm) install sddm sddm-$INIT ;;
             greetd) install greetd greetd-$INIT greetd-tuigreet
 		sed -i "s|vt = 1|vt = 7|" /etc/greetd/config.toml
-		sed -i "s|agreety --cmd /bin/sh|tuigreet -r -t --cmd $DESKTOP|" /etc/greetd/config.toml ;;
+		sed -i "s|agreety --cmd /bin/sh|tuigreet -r -t --cmd ${DESKTOP}|" /etc/greetd/config.toml ;;
         esac
         service "$LOGIN"
     fi
