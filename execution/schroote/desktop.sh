@@ -53,12 +53,12 @@ cd $DESKTOP
 sed -i '50d;54d;69d' PKGBUILD
 sed -i 's/libsystemd/libelogind/g' PKGBUILD
 #I know its messy, but i have to use aur for dependencies only :/
-$AUR -Sy --noconfirm swayfx
+sudo -u $USERNAME install_aur swayfx
 sudo -u $USERNAME makepkg -sic --noconfirm --skipchecksums
 sudo pacman -U --noconfirm *.pkg.tar.zst
 cd $DIRR
-#rm -rf /home/$USERNAME/$DESKTOP 
-DESKTOP="sway ${SWAY_GPU}" ;;  
+rm -rf /home/$USERNAME/$DESKTOP
+DESKTOP="sway" ;;  
 
 esac
 

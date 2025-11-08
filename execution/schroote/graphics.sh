@@ -65,7 +65,7 @@ case "$1" in
         /usr/bin/nvidia-sleep.sh "resume"
         ;;
 esac' > /lib64/elogind/system-sleep/nvidia
- 	SWAY_GPU="--unsupported-gpu"
+ 	SWAY_GPU="yes"
     fi
 
         execute_modules
