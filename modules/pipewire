@@ -7,4 +7,19 @@ main() {
 
 	install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulse 
 
+	SCRIPT_DIR="/home/$USERNAME/.scripts"
+	SCRIPT_SOUND="$SCRIPT_DIR/sound.sh"
+	
+	chown "$USERNAME" "$SCRIPT_SOUND"
+	touch "$SCRIPT_SOUND"
+	
+	sudo -u "$USERNAME" chmod +x "$SCRIPT_SOUND"
+
+	echo "#!/bin/sh
+pipewire &
+pipewire-pulse &
+wireplumber &" > "$SCRIPT_SOUND"
+
+	ln -s "$SCRIPT_SOUND" /usr/local/bin
+
 }

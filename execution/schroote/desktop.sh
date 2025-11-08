@@ -38,11 +38,21 @@ execute_desktop() {
     sway) install sway ;;
     river) install river ;; 
     niri) install niri ;;
-    kde) install plasma kde-applications ;;
-    xfce) install xfce4 xfce4-goodies ;;
+    kde) install plasma ;;
+    xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;
-    esac
+    swayfx) cd /home/$USERNAME
+sudo -u $USERNAME git clone https://aur.archlinux.org/$DESKTOP.git
+chown $USERNAME $DESKTOP/
+cd $DESKTOP
+sed -i '/50-systemd-user.conf/d' PKGBUILD
+sed -i 's/-Dsd-bus-provider=libsystemd/-Dsd-bus-provider=libelogind/g' PKGBUILD
+sudo -u $USERNAME makepkg -si --noconfirm
+sudo pacman -U --noconfirm *.pkg.tar.zst
+cd $DIRR
+rm -rf /home/$USERNAME/$DESKTOP ;;  
+esac
 
     if [ "$LOGIN" == "greetd" ] && [ "$XORG" == "yes" ]
     then
