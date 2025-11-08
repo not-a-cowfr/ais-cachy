@@ -36,22 +36,28 @@ execute_desktop() {
     case $DESKTOP in
     hyprland) install hyprland kitty ;;
     sway) install sway ;;
+    mangowc) install_aur mangowc ;;
     river) install river ;; 
     niri) install niri ;;
     kde) install plasma ;;
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;
-    swayfx) cd /home/$USERNAME
+
+
+    swayfx) 
+cd /home/$USERNAME
 sudo -u $USERNAME git clone https://aur.archlinux.org/$DESKTOP.git
 chown $USERNAME $DESKTOP/
 cd $DESKTOP
-sed -i '/50-systemd-user.conf/d' PKGBUILD
+sed -i '50d;54d;69d' PKGBUILD
 sed -i 's/-Dsd-bus-provider=libsystemd/-Dsd-bus-provider=libelogind/g' PKGBUILD
-sudo -u $USERNAME makepkg -si --noconfirm
+sudo -u $USERNAME makepkg -sic --skipchecksums --noconfirm
 sudo pacman -U --noconfirm *.pkg.tar.zst
 cd $DIRR
-rm -rf /home/$USERNAME/$DESKTOP ;;  
+rm -rf /home/$USERNAME/$DESKTOP 
+DESKTOP="sway $SWAY_GPU";;  
+
 esac
 
     if [ "$LOGIN" == "greetd" ] && [ "$XORG" == "yes" ]

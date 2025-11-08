@@ -10,7 +10,9 @@ main() {
 	SCRIPT_DIR="/home/$USERNAME/.scripts"
 	SCRIPT_SOUND="$SCRIPT_DIR/sound.sh"
 	
-	chown "$USERNAME" "$SCRIPT_SOUND"
+	mkdir -p $SCRIPT_DIR
+
+	chown "$USERNAME" "$SCRIPT_DIR"
 	touch "$SCRIPT_SOUND"
 	
 	sudo -u "$USERNAME" chmod +x "$SCRIPT_SOUND"
