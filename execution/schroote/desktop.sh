@@ -52,11 +52,12 @@ chown $USERNAME $DESKTOP/
 cd $DESKTOP
 sed -i '50d;54d;69d' PKGBUILD
 sed -i 's/-Dsd-bus-provider=libsystemd/-Dsd-bus-provider=libelogind/g' PKGBUILD
+install_aur swayfx
 sudo -u $USERNAME makepkg -sic --skipchecksums --noconfirm
 sudo pacman -U --noconfirm *.pkg.tar.zst
 cd $DIRR
 rm -rf /home/$USERNAME/$DESKTOP 
-DESKTOP="sway $SWAY_GPU";;  
+DESKTOP="sway ${SWAY_GPU}" ;;  
 
 esac
 

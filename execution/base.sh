@@ -34,6 +34,11 @@ execute_base() {
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
+    if [ "$SWAP_STYLE" == "file" ]
+    then
+      echo "/swapfile none swap defaults 0 0" >> /mnt/etc/fstab
+    fi
+
 FIRST_TIME="yes"
 
         execute_chroot

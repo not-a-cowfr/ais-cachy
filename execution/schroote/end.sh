@@ -19,7 +19,7 @@ alias poweroff="doas poweroff"
 alias shutdown="doas shutdown"
 alias zzz="doas zzz" ' >> $SSHELL_CONFIG
 
-	sed -i 's/$PACMAN_AUTH=()/PACMAN_AUTH=(doas)/g' /etc/makepkg.conf
+	sed -i 's/#PACMAN_AUTH=()/PACMAN_AUTH=(doas)/g' /etc/makepkg.conf
 
     else
         sed -i "s|$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL|%wheel ALL=(ALL) ALL|" /etc/sudoers
