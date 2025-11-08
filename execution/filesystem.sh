@@ -18,7 +18,7 @@ execute_fat() {
 
     if [ "$BOOTLOADER" != "none" ]
     then
-        mkfs.vfat -n "ESP" "$ESP"
+        mkfs.fat -F 32 -n "ESP" "$ESP"
     fi
         mkdir -p /mnt/boot
         mount "$ESP" /mnt/boot
