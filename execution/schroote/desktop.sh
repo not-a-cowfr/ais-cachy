@@ -43,23 +43,8 @@ execute_desktop() {
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;
-
-
-    swayfx) 
-cd /home/$USERNAME
-sudo -u $USERNAME git clone https://aur.archlinux.org/$DESKTOP.git
-chown $USERNAME $DESKTOP
-cd $DESKTOP
-sed -i '50d;54d;69d' PKGBUILD
-sed -i 's/libsystemd/libelogind/g' PKGBUILD
-#I know its messy, but i have to use aur for dependencies only :/
-sudo -u $USERNAME install_aur swayfx
-sudo -u $USERNAME makepkg -sic --noconfirm --skipchecksums
-sudo pacman -U --noconfirm *.pkg.tar.zst
-cd $DIRR
-rm -rf /home/$USERNAME/$DESKTOP
-DESKTOP="sway" ;;  
-
+    swayfx) sudo -u $USERNAME install_aur swayfx-artix
+      DESKTOP="sway" ;;  
 esac
 
     if [ "$LOGIN" == "greetd" ] && [ "$XORG" == "yes" ]
