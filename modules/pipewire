@@ -15,7 +15,7 @@ main() {
 	chown "$USERNAME" "$SCRIPT_DIR"
 	touch "$SCRIPT_SOUND"
 	
-	sudo -u "$USERNAME" chmod +x "$SCRIPT_SOUND"
+	sudo -u "$USERNAME" sudo chmod +x "$SCRIPT_SOUND"
 
 	echo "#!/bin/sh
 pipewire &
