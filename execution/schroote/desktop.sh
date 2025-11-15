@@ -36,14 +36,14 @@ execute_desktop() {
     case $DESKTOP in
     hyprland) install hyprland kitty ;;
     sway) install sway ;;
-    mangowc) install_aur mangowc ;;
+    mangowc) sudo -u $USERNAME $AUR -Sy --noconfirm mangowc ;;
     river) install river ;; 
     niri) install niri ;;
     kde) install plasma ;;
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;
-    swayfx) sudo -u $USERNAME install_aur swayfx-artix
+    swayfx) sudo -u $USERNAME $AUR -Sy --noconfirm swayfx-artix
       DESKTOP="sway" ;;  
 esac
 
