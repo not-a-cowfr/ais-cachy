@@ -37,7 +37,7 @@ alias zzz="doas zzz" ' >> $SSHELL_CONFIG
       then
     sed -i 's|agreety --cmd /bin/sh|tiogreet -r -t --cmd sway --unsupported-gpu' /etc/greetd/config.toml
       else
-    sed -i 's|agreety --cmd /bin/sh|tuigreet -r -t --cmd "$DESKTOP"|' /etc/greetd/config.toml
+    sed -i 's|agreety --cmd /bin/sh|tuigreet -r -t --cmd $DESKTOP|' /etc/greetd/config.toml
         
   fi ;;
     esac
