@@ -43,8 +43,6 @@ execute_desktop() {
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;
-    swayfx) sudo -u $USERNAME $AUR -Sy --noconfirm swayfx-artix
-      DESKTOP="sway" ;;  
 esac
 
     if [ "$LOGIN" == "greetd" ] && [ "$XORG" == "yes" ]

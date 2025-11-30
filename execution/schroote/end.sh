@@ -49,6 +49,7 @@ alias zzz="doas zzz" ' >> $SSHELL_CONFIG
       swapon /swapfile
   fi
 
+	umount -R /mnt
 
   }
 
