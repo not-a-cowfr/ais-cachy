@@ -32,12 +32,7 @@ alias zzz="doas zzz" ' >> $SSHELL_CONFIG
             greetd) install greetd greetd-$INIT greetd-tuigreet
 		sed -i "s|vt = 1|vt = 7|" /etc/greetd/config.toml
 	
-#yet another big mess i will clear it up later
-      if [ "$DESKTOP" == "sway" ] && [ "$SWAY_GPU" == "yes" ]
-      then
-    sed -i 's|agreety --cmd /bin/sh|tiogreet -r -t --cmd sway --unsupported-gpu' /etc/greetd/config.toml
-      else
-    sed -i 's|agreety --cmd /bin/sh|tuigreet -r -t --cmd $DESKTOP|' /etc/greetd/config.toml
+    sed -i "s|agreety --cmd /bin/sh|tuigreet -r -t --cmd $DESKTOP|" /etc/greetd/config.toml
         
   fi ;;
     esac
