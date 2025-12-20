@@ -23,5 +23,22 @@ execute_network() {
 	dhcpcd) service dhcpcd ;; 
 	esac
 
-        execute_aur
+        execute_dns
 }
+
+execute_dns() {
+
+		if [ "$DNS" != "none" ]
+		then
+
+		install openresolv
+
+		resolvconf -u
+		echo "$DNS" >> /etc/resolvconf.conf
+	 	resolvconf -u	
+
+		fi
+
+		execute_aur
+	
+	}

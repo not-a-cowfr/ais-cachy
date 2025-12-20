@@ -15,5 +15,5 @@ option_network() {
     )
         [ "$?" == "3" ] && map
 
-        option_graphics
+        option_dns
 }
