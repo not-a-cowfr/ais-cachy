@@ -1,9 +1,7 @@
 #!/bin/bash
 
 execute_wipe() {
-
 local type_disk=$(lsblk $DISK -d | grep -oh -E 'sd|nvme')
-
 local frozen_check=$(hdparm -I $DISK | grep frozen)
 
 
@@ -90,6 +88,8 @@ what_partition() {
 
     option_root_partition
 
+		option_add_disk
+
     execute_encryption
 }
 
@@ -128,3 +128,47 @@ option_swap_partition() {
 
 }
 
+option_add_disk() {
+    if DISK_ADD=$(monolog --begin 5 5 \
+      --title "HELPER" \
+      --infobox "If you have other hard drives and would like to mount them automatically after startup there You can add it" 0 0 \
+      --and-widget \
+      --title "Anything to add?" \
+    --defaultno \
+    --yesno "would you like to mount additional disks?" 0 0 
+    )
+    then
+        DISK_TO_ADD="yes"
+        option_what_add_disk
+    else
+			execute_encryption
+		fi
+}
+
+option_what_add_disk() {
+
+PARTITIONZ=$(lsblk -o NAME,SIZE | grep '─' | sed 's/.*─//')
+
+    if WHAT_ADD_DISK=$(dialog --stdout --title "What to add" \
+            --extra-button --extra-label "NEXT" \
+            --menu "What partition would you like to mount?" 0 0 0 \
+            $PARTITIONZ)
+    then
+        ADD_DISK+="/dev/$WHAT_ADD_DISK "
+        option_where_add_disk
+    else
+        [ "$?" == "3" ] && execute_encryption
+    fi
+}
+
+option_where_add_disk() {
+
+    WHERE_ADD_DISK=$(dialog --stdout --title "Where to add?" \
+    --nocancel \
+    --inputbox "Where would you like to add? (write full path like /media/ssd)" 0 0 )
+
+    WHERE_DISK+="$WHERE_ADD_DISK "
+    ADD_DISK+="$WHERE_ADD_DISK "
+
+        option_what_add_disk
+}

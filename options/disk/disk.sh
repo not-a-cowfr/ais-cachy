@@ -35,9 +35,15 @@ option_disk_method() {
     "automatic" "Everything will be formated using scheme" "manual" "You will do it yourself with cfdisk"
     )
         [ "$?" == "3" ] && map
-        
+       
+		if [ "$DISK_METHOD" == "automatic" ]
+		then	
         option_add_disk
-}
+		else
+				option_filesystem
+				DISK_TO_ADD=no
+		fi
+			}
 
 option_add_disk() {
     if DISK_ADD=$(monolog --begin 5 5 \
