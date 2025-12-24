@@ -10,10 +10,10 @@ option_graphics() {
     --no-cancel \
     --extra-button --extra-label "MAP" \
     --checklist  "Choose your graphics drivers:" 0 0 0 \
-    "nvidia-open" "Proprietary (newer than GTX 1650)" "off" "nvidia" "Proprietary (older than GTX 1650)" "off" \
+    "nvidia-open" "Proprietary" "off" \
     "amd" "" "off" \
     "intel" "" "off" "nouveau" "" "off" \
-    "nvidia-470" "Legacy" "off" "nvidia-390" "Legacy" "off"
+    "nvidia-580" "Legacy" "off" "nvidia-470" "Legacy" "off" "nvidia-390" "Legacy" "off"
     )
 
         [ "$?" == "3" ] && map
