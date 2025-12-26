@@ -72,6 +72,7 @@ execute_chroot() {
     export LOCALE="$LOCALE"
     export AUR="$AUR"
     export NETWORK="$NETWORK"
+    export DNS="$DNS"
     export DESKTOP="$DESKTOP"
     export LOGIN="$LOGIN"
     export SSHELL="$SSHELL"

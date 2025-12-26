@@ -23,12 +23,6 @@ execute_fat() {
         mkdir -p /mnt/boot
         mount "$ESP" /mnt/boot
 
-    if [ "$BOOTLOADER" == "grub" ] && [ "$FILESYSTEM" == "btrfs" ]
-    then
-        mkdir -p /mnt/boot/grub
-        btrfs subvolume create /mnt/boot/grub/x86_64-efi
-    fi
-
         execute_additional_disk
 }
 
