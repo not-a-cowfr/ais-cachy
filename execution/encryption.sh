@@ -14,7 +14,7 @@ execute_encryption() {
             keysize="512"
 
         [ -z "$itertime" ] &&
-            itertime="10000"
+            itertime="5000"
 
                     echo "$ENCRYPTION_PASSWORD1
                 $ENCRYPTION_PASSWORD2
@@ -23,7 +23,7 @@ execute_encryption() {
         echo "$ENCRYPTION_PASSWORD1" | cryptsetup luksOpen "$ROOT" artix 
 
     fi
-CRYPT="/dev/mapper/artix"
+ROOT="/dev/mapper/artix"
 
         execute_lvm
 }
