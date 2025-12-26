@@ -33,11 +33,10 @@ alias zzz="doas zzz" ' >> $SSHELL_CONFIG
 		sed -i "s|vt = 1|vt = 7|" /etc/greetd/config.toml
 	
     sed -i "s|agreety --cmd /bin/sh|tuigreet -r -t --cmd $DESKTOP|" /etc/greetd/config.toml
-        
-  fi ;;
-    esac
+ 
         service "$LOGIN"
-    fi
+
+  fi 
 
   if [ "$SWAP_STYLE" == "file" ]
   then

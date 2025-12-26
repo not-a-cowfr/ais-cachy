@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCES=$(ls /mnt/schroote/ -I chroot.sh)
+SOURCES=$(ls /mnt/schroote/ -I chroot.sh -I modules )
 
 for i in $SOURCES
 do

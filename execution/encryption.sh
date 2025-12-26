@@ -23,7 +23,7 @@ execute_encryption() {
         echo "$ENCRYPTION_PASSWORD1" | cryptsetup luksOpen "$ROOT" artix 
 
     fi
-ROOT="/dev/mapper/artix"
+CRYPT="/dev/mapper/artix"
 
         execute_lvm
 }

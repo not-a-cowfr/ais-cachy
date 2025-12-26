@@ -34,8 +34,8 @@ execute_dns() {
 		install openresolv
 
 		resolvconf -u
-		echo "$DNS" >> /etc/resolvconf.conf
-	 	resolvconf -u	
+		echo "name_servers=$DNS" >> /etc/resolvconf.conf
+	 	resolvconf -u
 
 		fi
 

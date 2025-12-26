@@ -2,8 +2,6 @@
 
 execute_base() {
 
-    sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 10/' /mnt/etc/pacman.conf
-
     basestrap /mnt base base-devel booster vim git man elogind-$INIT $COMPRESS $KERNEL $KERNEL-headers linux-firmware \
     efibootmgr $SSHELL pacman-contrib polkit --ignore mkinitcpio
 
