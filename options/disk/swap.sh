@@ -10,7 +10,7 @@ option_swap_style() {
     --no-cancel \
     --extra-button --extra-label "MAP" \
     --menu "How are you swapping?" 0 0 0\
-    "file" "" "partition" "" "zram" ""
+    "file" "" "partition" "" "zram" "" "none" ""
     )
         [ "$?" == "3" ] && map
 
