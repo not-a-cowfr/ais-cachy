@@ -39,7 +39,7 @@ execute_desktop() {
     mangowc) sudo -u $USERNAME $AUR -Sy --noconfirm mangowc ;;
     river) install river ;; 
     niri) install niri ;;
-    kde) install plasma ;;
+    kde) install plasma-desktop ;;
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
     i3) install i3-wm & XORG"yes" ;;

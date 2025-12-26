@@ -88,7 +88,7 @@ what_partition() {
 
     option_root_partition
 
-		option_add_disk
+		execute_add_disk
 
     execute_encryption
 }
@@ -128,7 +128,7 @@ option_swap_partition() {
 
 }
 
-option_add_disk() {
+execute_add_disk() {
     if DISK_ADD=$(monolog --begin 5 5 \
       --title "HELPER" \
       --infobox "If you have other hard drives and would like to mount them automatically after startup there You can add it" 0 0 \
@@ -139,13 +139,13 @@ option_add_disk() {
     )
     then
         DISK_TO_ADD="yes"
-        option_what_add_disk
+        execute_what_add_disk
     else
 			execute_encryption
 		fi
 }
 
-option_what_add_disk() {
+execute_what_add_disk() {
 
 PARTITIONZ=$(lsblk -o NAME,SIZE | grep '─' | sed 's/.*─//')
 
@@ -155,13 +155,13 @@ PARTITIONZ=$(lsblk -o NAME,SIZE | grep '─' | sed 's/.*─//')
             $PARTITIONZ)
     then
         ADD_DISK+="/dev/$WHAT_ADD_DISK "
-        option_where_add_disk
+        execute_where_add_disk
     else
         [ "$?" == "3" ] && execute_encryption
     fi
 }
 
-option_where_add_disk() {
+execute_where_add_disk() {
 
     WHERE_ADD_DISK=$(dialog --stdout --title "Where to add?" \
     --nocancel \
@@ -170,5 +170,5 @@ option_where_add_disk() {
     WHERE_DISK+="$WHERE_ADD_DISK "
     ADD_DISK+="$WHERE_ADD_DISK "
 
-        option_what_add_disk
+        execute_what_add_disk
 }
