@@ -14,7 +14,7 @@ execute_encryption() {
             keysize="512"
 
         [ -z "$itertime" ] &&
-            itertime="5000"
+            itertime="10000"
 
                     echo "$ENCRYPTION_PASSWORD1
                 $ENCRYPTION_PASSWORD2
