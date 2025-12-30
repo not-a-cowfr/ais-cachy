@@ -15,7 +15,7 @@ execute_bootloader() {
     if [ "$ENCRYPTION" == "yes" ]
     then
         ROOT_BLKID=$(blkid -s UUID -o value $ROOT)
-            ROOT="rd.luks.name=$ROOT_BLKID=Artix"
+            ENCRYPTED_ROOT="rd.luks.name=$ROOT_BLKID=Artix"
     fi
 
     case $BOOTLOADER in
@@ -32,7 +32,7 @@ execute_refind() {
     mkrlconf
 
 cat > /boot/refind_linux.conf << EOF 
-"Boot with minimal options"   "root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
+"Boot with minimal options"   "$ENCRYPTED_ROOT root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
 EOF
 }
 
