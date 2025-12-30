@@ -12,6 +12,12 @@ execute_bootloader() {
         ROOTFLAG="rootflags=subvol=/@"
     fi
 
+    if [ "$ENCRYPTION" == "yes" ]
+    then
+        ROOT_BLKID=$(blkid -s UUID -o value $ROOT)
+            ROOT="rd.luks.name=$ROOT_BLKID=Artix"
+    fi
+
     case $BOOTLOADER in
     refind) execute_refind ;;
     "efi stub") execute_efi_stub ;;
