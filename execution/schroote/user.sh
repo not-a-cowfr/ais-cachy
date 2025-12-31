@@ -9,7 +9,7 @@ execute_root_password() {
 
 execute_user_create() {
 
-    useradd -m $USERNAME
+    useradd "$USER_HOME_CREATE" $USERNAME
      usermod -a -G video,audio,input,storage,wheel,scanner,disk,power $USERNAME
 
         execute_user_password

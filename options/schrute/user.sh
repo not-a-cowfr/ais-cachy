@@ -9,7 +9,20 @@ option_user_create() {
     )
         [ "$?" == "3" ] && map
 
-        option_user_password
+        option_user_home
+}
+
+option_user_home() {
+    if USER_HOME=$(monolog --title "USER HOME" \
+        --no-cancel \
+        --yesno "would you like to create home directory with user?" 0 0 \ )
+then
+    USER_HOME_CREATE="-m"
+else
+    USER_HOME_CREATE=""
+    fi
+
+    option_user_password
 }
 
 option_user_password() {

@@ -67,6 +67,7 @@ execute_chroot() {
     export USER_PASSWORD1="$USER_PASSWORD1"
     export USER_PASSWORD2="$USER_PASSWORD2"
     export USERNAME="$USERNAME"
+    export USER_HOME_CREATE="$USER_HOME_CREATE"
     export TIMEZONE="$TIMEZONE"
     export LOCALE_CHOICE="$LOCALE_CHOICE"
     export LOCALE="$LOCALE"
