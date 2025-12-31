@@ -34,7 +34,8 @@ rm -rf /home/$USERNAME/$AUR
 execute_desktop() {
 
     case $DESKTOP in
-    hyprland) install hyprland kitty ;;
+    hyprland) install hyprland kitty
+    DESKTOP="start-hyprland" ;;
     sway) install sway ;;
     mangowc) sudo -u $USERNAME $AUR -Sy --noconfirm mangowc ;;
     river) install river ;; 
