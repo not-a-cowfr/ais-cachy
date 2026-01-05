@@ -2,7 +2,7 @@
 
 execute_base() {
 
-    basestrap /mnt base base-devel booster vim git man elogind-$INIT $COMPRESS $KERNEL $KERNEL-headers linux-firmware \
+    basestrap /mnt base base-devel booster nvim git man elogind-$INIT $COMPRESS $KERNEL $KERNEL-headers linux-firmware \
     efibootmgr $SSHELL pacman-contrib polkit --ignore mkinitcpio
 
     if [ "$INIT" == "s6" ]

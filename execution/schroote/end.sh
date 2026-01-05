@@ -8,16 +8,7 @@ execute_end() {
 
     if [ "$SUPER" == "doas" ]
     then
-        echo -e 'permit persist setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel
-permit nopass :wheel as root cmd reboot
-permit nopass :wheel as root cmd poweroff
-permit nopass :wheel as root cmd shutdown
-permit nopass :wheel as root cmd zzz' > /etc/doas.conf
-
-	echo -e 'alias reboot="doas reboot"
-alias poweroff="doas poweroff"
-alias shutdown="doas shutdown"
-alias zzz="doas zzz" ' >> $SSHELL_CONFIG
+        echo -e 'permit persist setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel' > /etc/doas.conf
 
 	sed -i 's/#PACMAN_AUTH=()/PACMAN_AUTH=(doas)/g' /etc/makepkg.conf
 
