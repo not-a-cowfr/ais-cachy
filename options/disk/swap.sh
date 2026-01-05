@@ -15,7 +15,7 @@ option_swap_style() {
         [ "$?" == "3" ] && map
 
 
-    if [ "$DISK_METHOD" == "manual" ] && [ "$SWAP_STYLE" == "partition" ]
+    if [ "$DISK_METHOD" == "manual" ] && [ "$SWAP_STYLE" == "partition" ] || [ "$SWAP_STYLE" == "none" ]
     then
         option_encryption
     else

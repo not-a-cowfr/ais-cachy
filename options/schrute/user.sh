@@ -15,7 +15,7 @@ option_user_create() {
 option_user_home() {
     if USER_HOME=$(monolog --title "USER HOME" \
         --no-cancel \
-        --yesno "would you like to create home directory with user?" 0 0 \ )
+        --yesno "would you like to create home directory with user?" 0 0 )
 then
     USER_HOME_CREATE="-m"
 else

@@ -9,8 +9,8 @@ option_bootloader() {
     --title "BOOTLOADER" \
     --no-cancel \
     --extra-button --extra-label "MAP" \
-    --menu  "Select bootloader:" 0 0 0 \
-    "refind" "" "efi stub" "" "none" ""
+    --checklist  "Select bootloader:" 0 0 0 \
+    "refind" "" "on" "efistub" "" "off" "efistub_fallback" "" "off"
     )
         [ "$?" == "3" ] && map
 
