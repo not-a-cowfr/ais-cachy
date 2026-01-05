@@ -7,8 +7,8 @@ main() {
 
 	install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulse 
 
-	SCRIPT_DIR="/home/$USERNAME/.scripts"
-	SCRIPT_SOUND="$SCRIPT_DIR/sound.sh"
+	SCRIPT_DIR="/usr/local/bin/"
+	SCRIPT_SOUND="$SCRIPT_DIR/pipewire-launcher"
 	
 	mkdir -p $SCRIPT_DIR
 
@@ -21,7 +21,5 @@ main() {
 pipewire &
 pipewire-pulse &
 wireplumber &" > "$SCRIPT_SOUND"
-
-	ln -s "$SCRIPT_SOUND" /usr/local/bin
 
 }
