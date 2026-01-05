@@ -15,7 +15,7 @@ execute_base() {
 
     if [ "$ENCRYPTION" == "yes" ]
     then
-        basestrap /mnt cryptsetup
+        basestrap /mnt cryptsetup cryptsetup-$INIT device-mapper-$INIT
     fi
     if [ "$LVM" == "yes" ]
     then

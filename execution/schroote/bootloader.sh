@@ -15,12 +15,10 @@ execute_bootloader() {
     if [ "$ENCRYPTION" == "yes" ]
     then
         ROOT_BLKID=$(blkid -s UUID -o value $ROOT)
-            KERNEL_ROOT="rd.luks.name=$ROOT_BLKID=Artix"
-    	else
-	KERNEL_ROOT="root=$ROOT"
+            ENCRYPTED_ROOT="rd.luks.name=$ROOT_BLKID=Artix"
     fi
 
-	KERNEL_PARAMETERS="$KERNEL_ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
+	KERNEL_PARAMETERS="$ENCRYPTED_ROOT root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
 
     for i in $BOOTLOADER;
     do
@@ -46,7 +44,7 @@ execute_efistub() {
  --disk $DISK --part 1 \
  --label "Artix Linux EFISTUB" \
  --loader /vmlinuz-$KERNEL \
- --unicode "$KERNEL_PARAMETERS"   
+ --unicode "${KERNEL_PARAMETERS}"   
 
 }
 
