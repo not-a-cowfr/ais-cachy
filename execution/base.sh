@@ -110,7 +110,7 @@ execute_end() {
     then
         reboot
     else
-        echo "Ok"
+        exit
     fi
 
 }

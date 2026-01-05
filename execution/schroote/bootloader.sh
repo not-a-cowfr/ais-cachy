@@ -54,7 +54,7 @@ execute_efistub-fallback() {
 
         efibootmgr --create \
  --disk $DISK --part 1 \
- --label "Artix Linux EFISTUB" \
+ --label "Artix Linux EFISTUB-fallback" \
  --loader /vmlinuz-$KERNEL \
  --unicode "initrd=\booster-$KERNEL-universal.img"   
 
