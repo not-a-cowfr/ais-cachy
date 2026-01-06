@@ -4,20 +4,21 @@ execute_aur() {
 
 echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-    sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 20/' /etc/pacman.conf
+        sed -i 's/^#ParallelDownloads.*/ParallelDownloads = 20/' /etc/pacman.conf
 
     case $AUR in
-	  yay) install go ;;
-    paru) install rust ;;	
-	  trizen) install trizen ;;
-	  yaourtix) install yaourtix ;;
-esac
+	    yay) install go ;;
+        paru) install rust ;;	
+	    trizen) install trizen ;;
+	    yaourtix) install yaourtix ;;
+    esac
 
     if [ "$AUR" == "yay" ] || [ "$AUR" == "paru" ]
     then
 
 DIRR=${PWD}
-cd /home/$USERNAME
+chown $USERNAME /opt
+cd /opt
 sudo -u $USERNAME git clone https://aur.archlinux.org/$AUR.git
 chown $USERNAME $AUR/
 cd $AUR
@@ -43,7 +44,7 @@ execute_desktop() {
     kde) install plasma-desktop ;;
     xfce) install xfce4 ;;
     bspwm) install bspwm sxhkd & XORG="yes" ;;
-    i3) install i3-wm & XORG"yes" ;;
+    i3) install i3-wm & XORG="yes" ;;
 esac
 
     if [ "$LOGIN" == "greetd" ] && [ "$XORG" == "yes" ]
