@@ -1,6 +1,6 @@
 #!/bin/bash
 title=pacman
-description="- Optimized pacman settings"
+description="- Minor tweaks pacman settings"
 status=on
 
 main() {
