@@ -35,5 +35,7 @@ execute_end() {
 
 	    umount -R /mnt
 
+        rm -rf /mnt/schroote
+
   }
 

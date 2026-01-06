@@ -24,6 +24,8 @@ execute_bootloader() {
 
 execute_refind() {
 
+    install refind
+
     refind-install --usedefault "$ESP" --alldrivers
     mkrlconf
 

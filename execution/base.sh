@@ -25,10 +25,6 @@ execute_base() {
     then
         basestrap /mnt btrfs-progs
     fi
-    if [ "$BOOTLOADER" == "refind" ] 
-    then
-        basestrap /mnt $BOOTLOADER
-    fi
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
