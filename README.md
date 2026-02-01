@@ -19,23 +19,22 @@ Features:
 - Automatic/manual partition of disk
 - Possible to mount more disks
 - Filesystems: ext4,btrfs,xfs
-- Swap: file, partition, zram
+- Swap: file, partition, zram, none
 - Encryption of root partition (FDE in future)
 - Inits: dinit, runit, openrc, s6
-- Bootloader: refind, efi stub, none
+- Bootloader: refind, efi stub, limine
 - Aur helper: yay,paru,tritzen,yaourtix,none
 - Kernels: mainline, lts, zen
 - Shells: bash,zsh
 - Network: networkmanager,connman,iwd,dhcpcd
+- DNS: possibility to change dns server using openresolv
 - Graphics: nvidia,intel,amd,nouveau,legacy nvidia
 - Some Environments: hyprland,kde,niri,bspwm and more
 - Login Manager: sddm,greetd
 - A lot of modules
 
-`for pipewire you need to put this 3 lines into autostart of your DE`
-- `pipewire &`
-- `pipewire-pulse &`
-- `wireplumber &`
+`for pipewire to start you need to add to your autostart command: pipewire-launcher
+for example in hyprland: exec-once = pipewire-launcher`
 
 Script will not start untill you press yes in the final step
 
