@@ -14,7 +14,7 @@ execute_bootloader() {
 
     ROOT_UUID=$(blkid -s UUID -o value "$ROOT")
     
-	KERNEL_PARAMETERS="root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
+	KERNEL_PARAMETERS="root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img initrd=\$UCODE.img rw add_efi_memmap quiet $NVIDIA_MODESET"
 
     for i in $BOOTLOADER;
     do
@@ -32,7 +32,7 @@ execute_refind() {
     mkrlconf
 
 cat > /boot/refind_linux.conf << EOF 
-"Boot with minimal options"   "root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"
+"Boot with minimal options"   "root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img initrd=\$UCODE.img rw add_efi_memmap quiet $NVIDIA_MODESET"
 EOF
 }
 
@@ -42,7 +42,7 @@ execute_efistub() {
  --disk $DISK --part 1 \
  --label "Artix Linux EFISTUB" \
  --loader /vmlinuz-$KERNEL \
- --unicode "root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img $INIT_UCODE rw add_efi_memmap quiet $NVIDIA_MODESET"   
+ --unicode "root=$ROOT $ROOTFLAG $SWAP_RESUME initrd=\booster-$KERNEL.img initrd=\$UCODE.img rw add_efi_memmap quiet $NVIDIA_MODESET"   
 
 }
 
@@ -65,19 +65,26 @@ execute_limine() {
         efibootmgr --create \
  --disk $DISK --part 1 \
  --label "Artix Linux LIMINE" \
- --loader '\boot\EFI\BOOT\BOOTX64.efi' \
+ --loader '\EFI\BOOT\BOOTX64.efi' \
  --unicode    
     
         touch /boot/EFI/BOOT/limine.conf
+
+    if [ "$UCODE" == "" ]
+    then
+        $UCODE_PATH="module_path: boot():/$UCODE.img"
+    fi
 
 cat > /boot/EFI/BOOT/limine.conf << EOF 
 timeout: 5
 
 /Arch Linux
     protocol: linux
-    path: boot():/vmlinuz-linux
+    path: boot():/vmlinuz-$KERNEL
     cmdline: root=UUID=$ROOT_UUID rw
     module_path: boot():/booster-$KERNEL.img
+    $UCODE_PATH
+
 EOF
 
     touch /etc/pacman.d/hooks/99-limine.hook
