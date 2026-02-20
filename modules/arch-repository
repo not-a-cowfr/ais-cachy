@@ -7,10 +7,17 @@ main() {
 
     install artix-archlinux-support
 
+	pacman-key --recv-keys F3B607488DB35A47
+	pacman-key --lsign-key F3B607488DB35A47
+
+	pacman -U 'https://mirror.cachyos.com/repo/x86_64/cachyos/cachyos-keyring-20240331-1-any.pkg.tar.zst' 'https://mirror.cachyos.com/repo/x86_64/cachyos/cachyos-mirrorlist-22-1-any.pkg.tar.zst'
+
     echo "
 #[testing]
 #Include = /etc/pacman.d/mirrorlist-arch
 
+[cachyos]
+Include = /etc/pacman.d/cachyos-mirrorlist
 
 [extra]
 Include = /etc/pacman.d/mirrorlist-arch
